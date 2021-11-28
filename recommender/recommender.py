@@ -106,3 +106,7 @@ class personalisedSearcher:
         recommended_movies = self.movies[self.movies["movieId"].isin(recommendations)]
         for row in recommended_movies.itertuples():
             print(row.title, ":", row.genres)
+
+
+searcher = personalisedSearcher()
+searcher.personalised_search(1, "zombie")

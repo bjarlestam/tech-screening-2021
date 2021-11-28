@@ -19,8 +19,13 @@ movie_encoded2movie = {i: x for i, x in enumerate(movie_ids)}
 df["user"] = df["userId"].map(user2user_encoded)
 df["movie"] = df["movieId"].map(movie2movie_encoded)
 
+num_users = len(user2user_encoded)
+num_movies = len(movie2movie_encoded)
+
 # shuffle the data and normalize the ratings (they are between 0-5 - 0-1)
 df = df.sample(frac=1, random_state=42)
+min_rating = df["rating"].min()
+max_rating = df["rating"].max()
 x = df[["user", "movie"]].values
 y = df["rating"].apply(lambda x: (x - min_rating) / (max_rating - min_rating)).values
 
